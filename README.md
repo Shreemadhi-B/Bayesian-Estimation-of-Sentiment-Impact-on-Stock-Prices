@@ -15,7 +15,7 @@
 ---
 
 ### ✍️ Authors
-Shreemadhi Babu Rajendra Prasad (24207575) · Saipavan Narayanasamy (24233785)  
+Shreemadhi Babu Rajendra Prasad  · Saipavan Narayanasamy   
 *M.Sc. Data & Computational Science · University College Dublin*
 
 📌 **Poster:** [Final Project Poster](./poster/final_project_poster_A0.pdf)
@@ -56,15 +56,6 @@ Outputs include **posterior summaries, HDIs, and forecast intervals**.
 
 ---
 
-## 🔄 Workflow
-
-<p align="center">
-  <img src="outputs/flowchart.png" 
-       alt="End-to-end workflow: data → sentiment → model → forecasts" 
-       width="320">
-</p>
-
----
 
 ## 🖼️ Demo / Screenshots
 
@@ -240,10 +231,4 @@ project/
 - **PyMC / ArviZ** for Bayesian modeling & diagnostics  
 - Public headline sources used by the app; Yahoo price data  
 - **UCD — ACM40960 Projects in Maths Modelling**
-
----
-
-## Author
-
-- **Shreemadhi Babu Rajendra Prasad**
 

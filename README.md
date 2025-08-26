@@ -18,8 +18,6 @@
 Shreemadhi Babu Rajendra Prasad  · Saipavan Narayanasamy   
 *M.Sc. Data & Computational Science · University College Dublin*
 
-📌 **Poster:** [Final Project Poster](./poster/final_project_poster_A0.pdf)
-
 ---
 
 ## 📑 Table of Contents

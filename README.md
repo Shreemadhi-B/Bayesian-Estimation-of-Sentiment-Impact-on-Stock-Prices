@@ -1,105 +1,116 @@
-<h1 align="center"> Bayesian Estimation of Sentiment Impact on Stock Prices</h1>
+<h1 align="center">📈 Bayesian Estimation of Sentiment Impact on Stock Prices</h1>
 
 <p align="center">
-  <i>Latest headlines → VADER sentiment → Bayesian Student-t regression (PyMC) → next-day log-return and multi-day price forecasts with uncertainty.</i>
+  <i>Headlines → VADER sentiment → Bayesian Student-t regression (PyMC) → next-day log-return + multi-day forecasts with uncertainty</i>
 </p>
 
 <p align="center">
   <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/License-MIT-yellow.svg"></a>
-  <img alt="Python" src="https://img.shields.io/badge/Python-3.9%2B-blue.svg">
-  <img alt="Streamlit" src="https://img.shields.io/badge/Streamlit-app-FF4B4B.svg?logo=streamlit&logoColor=white">
-  <img alt="PyMC" src="https://img.shields.io/badge/PyMC-Bayesian%20inference-3776AB.svg">
+  <img alt="Python" src="https://img.shields.io/badge/Python-3.9+-blue.svg">
+  <img alt="Streamlit" src="https://img.shields.io/badge/Streamlit-App-FF4B4B.svg?logo=streamlit&logoColor=white">
+  <img alt="PyMC" src="https://img.shields.io/badge/PyMC-Bayesian%20Inference-3776AB.svg">
   <img alt="Status" src="https://img.shields.io/badge/Release-v1.0.0-success.svg">
 </p>
 
-**Authors**  
-Shreemadhi Babu Rajendra Prasad (24207575) · Saipavan Narayanasamy (24233785) 
-*M.Sc. in Data & Computational Science, University College Dublin*
+---
 
-**Poster:** [Project Poster](./poster/final_project_poster_A0.pdf)
+### ✍️ Authors
+Shreemadhi Babu Rajendra Prasad (24207575) · Saipavan Narayanasamy (24233785)  
+*M.Sc. Data & Computational Science · University College Dublin*
+
+📌 **Poster:** [Final Project Poster](./poster/final_project_poster_A0.pdf)
 
 ---
 
-## Table of Contents
+## 📑 Table of Contents
 - [Overview](#overview)
+- [Workflow](#workflow)
 - [Demo / Screenshots](#demo--screenshots)
-- [What the app does](#what-the-app-does)
-- [Model in one slide](#model-in-one-slide)
+- [Features](#features)
+- [Model](#model)
 - [Install & Run](#install--run)
-- [Using the app](#using-the-app)
-- [Outputs & Run Log](#outputs--run-log)
+- [Using the App](#using-the-app)
+- [Outputs & Logging](#outputs--logging)
 - [Project Structure](#project-structure)
-- [About the project](#about-the-project)
-- [Limitations & future work](#limitations--future-work)
-- [Tech stack](#tech-stack)
+- [About](#about)
+- [Limitations & Future Work](#limitations--future-work)
+- [Tech Stack](#tech-stack)
 - [License](#license)
-- [Cite](#cite)
 - [Acknowledgments](#acknowledgments)
 - [Maintainers](#maintainers)
 
 ---
 
-## Overview
+## 🚀 Overview
 
-We build a small research app that:
+This research app demonstrates how **daily news sentiment** can be transformed into a predictive signal for stock returns:
 
-1) pulls the latest news headlines per ticker,  
-2) scores each headline with **NLTK VADER** (compound),  
-3) aggregates to a **daily sentiment signal** \(z_t\), and  
-4) fits a **Bayesian Student-t regression** (with PyMC) for **next-day log-return** and **3-day price forecasts**, reporting **94% HDIs** for parameters and **90% prediction intervals** (PIs) for prices.
+1. **Headlines** pulled per ticker  
+2. Scored via **NLTK VADER** (compound)  
+3. Aggregated into a **daily sentiment index** \(z_t\)  
+4. Modeled with **Bayesian Student-t regression (PyMC)** to predict:
+   - **Next-day log-return**
+   - **3-day price forecasts** with **uncertainty intervals**
+
+Outputs include **posterior summaries, HDIs, and forecast intervals**.
 
 ---
 
-## Workflow overview
+## 🔄 Workflow
 
 <p align="center">
-  <img src="outputs/flowchart.png"
-       alt="End-to-end workflow: data → sentiment → model → forecasts"
-       width="300">
+  <img src="outputs/flowchart.png" 
+       alt="End-to-end workflow: data → sentiment → model → forecasts" 
+       width="320">
 </p>
 
-## Demo / Screenshots
+---
 
-### Forecast charts
+## 🖼️ Demo / Screenshots
 
+### Forecast Examples
 <p align="center">
-  <img src="outputs/tsla_forecast.png" alt="TSLA — Price forecast (next 3 days)" width="48%">
-  <img src="outputs/aapl_forecast.png" alt="AAPL — Price forecast (next 3 days)" width="48%">
+  <img src="outputs/tsla_forecast.png" alt="TSLA forecast" width="48%">
+  <img src="outputs/aapl_forecast.png" alt="AAPL forecast" width="48%">
 </p>
 
 ### Comparison
-<img src="outputs/comparison_history_vs_forecast.png"
-     alt="Comparison around 'Today': history vs mean forecast">
-
-
----
-
-## What the app does
-
-- **Headlines → sentiment**: For each ticker, fetch recent public headlines and score with **VADER** (compound). Average by day to create \(z_t\).
-- **Bayesian regression**: Fit a **Student-t** regression of next-day log-return on **yesterday’s** sentiment \(z_{t-1}\) (lag-1). Heavy tails robustify against outliers.
-- **Uncertainty first-class**: Report **94% HDIs** for \(\alpha,\beta,\sigma,\nu\) and **90% PIs** for predicted prices.
-- **Forecasts**: Produce next-3-day price forecast table and chart.
-- **Comparison**: Side-by-side **β (sentiment effect)** table across two tickers + **indexed history vs mean forecast** plot.
-- **Reproducible logging**: Append each run to a local CSV at `results/predictions_log.csv` (kept out of Git by `.gitignore`).
+<p align="center">
+  <img src="outputs/comparison_history_vs_forecast.png"
+       alt="History vs mean forecast comparison"
+       width="70%">
+</p>
 
 ---
 
-## Model in one slide
+## 🎯 Features
+
+- **Sentiment extraction:** Headlines → VADER → daily average signal  
+- **Bayesian regression:** Student-t regression of \(r_t\) on lag-1 sentiment \(z_{t-1}\)  
+- **Uncertainty quantification:**  
+  - 94% HDIs for parameters  
+  - 90% PIs for forecast prices  
+- **Forecasting:** 3-day ahead price forecasts (table + chart)  
+- **Comparison:** Effect size (β) and indexed forecast comparison across tickers  
+- **Reproducibility:** Every run logged in `results/predictions_log.csv` (ignored by Git)
+
+---
+
+## 🧮 Model
 
 We model **daily log-returns** with heavy tails:
 
 $$
-r_t \;=\; \alpha + \beta\, z_{t-1} + \varepsilon_t,
-\qquad
-\varepsilon_t \sim \text{Student-t}(\nu, 0, \sigma)
+r_t = \alpha + \beta z_{t-1} + \varepsilon_t, 
+\quad \varepsilon_t \sim \text{Student-t}(\nu, 0, \sigma)
 $$
 
-- $r_t$: next-day log-return  
-- $z_{t-1}$: yesterday’s (lag-1) **VADER** daily average  
-- Parameters $(\alpha,\beta,\sigma,\nu)$ are inferred with **PyMC** (NUTS).  
-- **β answers:** _does yesterday’s sentiment move tomorrow’s return?_  
-- Price forecasts are obtained by transforming simulated log-return paths to prices.
+- \(r_t\): next-day log-return  
+- \(z_{t-1}\): yesterday’s average sentiment  
+- Parameters \((\alpha, \beta, \sigma, \nu)\) inferred with **PyMC (NUTS)**  
+- **β answers:** “Does yesterday’s sentiment shift tomorrow’s return?”  
+- Forecast prices simulated via log-return paths
+
 
 ---
 
@@ -222,13 +233,6 @@ project/
 
 ---
 
-## Cite
-
-If you reference this project:
-
-> Narayanasamy, S.; Rajendra Prasad, S.B. (2025). _Bayesian Estimation of Sentiment Impact on Stock Prices_. Version 1.0.0. MIT License. Poster: `poster/final_project_poster_A0.pdf`.
-
----
 
 ## Acknowledgments
 
@@ -239,7 +243,7 @@ If you reference this project:
 
 ---
 
-## Maintainers
+## Author
 
-- **Sai pavan Narayanasamy** — 24235785  
-- **Shreemadhi Babu Rajendra Prasad** — 24207575
+- **Shreemadhi Babu Rajendra Prasad**
+
